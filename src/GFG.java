@@ -3,34 +3,61 @@ import java.lang.*;
 import java.io.*;
 
 class GFG {
-	
 
-	public static void main (String[] args) {
-		//code
-		Scanner sc = new Scanner (System.in);
-		int T = sc.nextInt();
-		
-		for (int t =1 ; t<=T ; t++ ) {
-			int n= sc.nextInt();
-			int []result = new int [100000];
-			
-			for (int i=0; i < n;i++){
-				  int temp  =sc.nextInt();
-				  result[temp-1]= result[temp-1]+1;
+	public static void main(String[] args) {
+		// code
+		try {
+			BufferedReader br = new 
+					BufferedReader(new InputStreamReader(System.in));
+			int T = Integer.parseInt(br.readLine());
+
+			for (int t = 1; t <= T; t++) {
+				int n = Integer.parseInt(br.readLine());
+				int a[] = new int [n];
+				int k=0;
+                int max = -100000;
+				
+
+				String line = null;
+				line = br.readLine();
+              while (line !=null){
+            	  
+					for (String numStr : line.split("\\s")) {
+						int temp = Integer.parseInt(numStr);
+						if ( temp > max){
+							max=temp;
+						}
+						a[k++]=temp;
+						
+					}
+					if ( k == n){
+						break;
+					}
+					line = br.readLine();
+            	  
+               }
+             
+				int[] result = new int[max];
+				for (int i=0; i < n ; i++) {
+					
+
+					result[a[i] - 1] = result[a[i] - 1] + 1;
+				}
+
+				int temp = 0;
+				
+				for (int i = 0; i < max; i++) {
+					if (result[i] != 0) {
+						temp = temp + result[i];
+						System.out.print(temp + " ");
+					}
+
+				}
+				System.out.println();
 			}
-			int temp=0;
-			System.out.println();
-			for (int i=0; i < 100000;i++){
-				  if (result[i]!=0){
-					  temp =temp+ result[i];
-					  System.out.print(temp + " ");
-				  }
-				  
-			}
-			
-			
+
+		} catch (Exception e) {
+          
 		}
-		
-		
 	}
 }
